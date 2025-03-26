@@ -1,0 +1,14 @@
+<div class="tasks-container">
+    <h1>Task List</h1>
+    <app-task-form (taskAdded)="addTask($event)"></app-task-form>
+    <mat-list>
+        <mat-list-item *ngFor="let task of tasks; trackBy: trackById">
+            <mat-checkbox [checked]="task.completed" (change)="toggleTask(task)"></mat-checkbox>
+            <span>{{ task.title }} - {{ task.description }} ({{ task.createdAt | date }})</span>
+            <button mat-icon-button (click)="deleteTask(task.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-list-item>
+    </mat-list>
+    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
+</div>
