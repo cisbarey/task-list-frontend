@@ -11,10 +11,10 @@ export class AuthService {
     constructor(private http: HttpClient) { }
 
     login(email: string): Observable<string> {
-        console.log('http', this.apiUrl);
-        
-        return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email }).pipe(
+        return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { username: email }).pipe(
             map(response => {
+                console.log('response', response);
+                
                 localStorage.setItem('token', response.token);
                 return response.token;
             }),
@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     createUser(email: string): Observable<string> {
-        return this.http.post<{ user: any; token: string }>(`${this.apiUrl}/createUser`, { email }).pipe(
+        return this.http.post<{ user: any; token: string }>(`${this.apiUrl}/createUser`, { username: email }).pipe(
             map(response => {
                 localStorage.setItem('token', response.token);
                 return response.token;

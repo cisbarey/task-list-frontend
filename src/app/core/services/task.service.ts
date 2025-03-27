@@ -26,7 +26,7 @@ export class TaskService {
     }
 
     updateTask(id: string, updates: Partial<Task>): Observable<Task> {
-        return this.http.put<Task>(`${this.apiUrl}/completeTask/${id}`, updates, { headers: this.getHeaders() });
+        return this.http.put<Task>(`${this.apiUrl}/updateStatusTask/${id}`, updates, { headers: this.getHeaders() });
     }
 
     deleteTask(id: string): Observable<void> {

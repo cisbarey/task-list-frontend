@@ -1,12 +1,32 @@
-<div class="login-container">
-    <h1>Login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" type="email" placeholder="Enter your email">
-            <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email is required</mat-error>
-            <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Invalid email format</mat-error>
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
-    </form>
+<div class="login-page">
+    <div class="login-form-container">
+        <div class="login-form">
+            <h1>Task List</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Email Address</mat-label>
+                    <input matInput formControlName="email" type="email" placeholder="Enter your email" />
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+                        Email is required
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+                        Please enter a valid email
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || isLoading">
+                    <span *ngIf="!isLoading">Login</span>
+                    <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <div class="info-content">
+            <h2>Domina tu Productividad</h2>
+            <p>Con nuestra aplicación, lleva un control total de tus tareas diarias. Crea, edita y completa tus
+                pendientes de manera sencilla y eficiente, asegurándote de nunca perder el rumbo. ¡Haz que cada día
+                cuente!</p>
+        </div>
+    </div>
 </div>

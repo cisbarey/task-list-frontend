@@ -1,31 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { TasksComponent } from './tasks.component';
+import { TasksRoutingModule } from './tasks-routing.module';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { TasksComponent } from './tasks.component';
-import { TaskFormComponent } from './task-form/task-form.component';
-import { TasksRoutingModule } from './tasks-routing.module';
+import { FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [
-    TasksComponent,
-    TaskFormComponent
-  ],
+  declarations: [TasksComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
+    TasksRoutingModule,
+    MatListModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
     MatCheckboxModule,
-    MatListModule,
     MatIconModule,
-    TasksRoutingModule
+    FormsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class TasksModule { }

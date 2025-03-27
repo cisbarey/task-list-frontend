@@ -9,10 +9,11 @@ import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/co
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    standalone: false,
+    standalone: false
 })
 export class LoginComponent {
     loginForm: FormGroup;
+    isLoading = false;
 
     constructor(
         private fb: FormBuilder,
@@ -26,14 +27,17 @@ export class LoginComponent {
     }
 
     onSubmit() {
-        console.log('submit', this.loginForm.invalid);
-        
         if (this.loginForm.invalid) return;
         const email = this.loginForm.value.email;
 
+        this.isLoading = true;
         this.authService.login(email).subscribe({
-            next: () => this.router.navigate(['/tasks']),
+            next: () => {
+                this.isLoading = false;
+                this.router.navigate(['/tasks']);
+            },
             error: (err) => {
+                this.isLoading = false;
                 if (err.message === 'User not found') {
                     this.openConfirmationDialog(email);
                 }
@@ -48,7 +52,16 @@ export class LoginComponent {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-                this.authService.createUser(email).subscribe(() => this.router.navigate(['/tasks']));
+                this.isLoading = true;
+                this.authService.createUser(email).subscribe({
+                    next: () => {
+                        this.isLoading = false;
+                        this.router.navigate(['/tasks']);
+                    },
+                    error: () => {
+                        this.isLoading = false;
+                    }
+                });
             }
         });
     }

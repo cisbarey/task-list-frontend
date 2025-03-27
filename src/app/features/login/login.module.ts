@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/co
         MatInputModule,
         MatButtonModule,
         MatDialogModule,
-        LoginRoutingModule
+        LoginRoutingModule,
+        MatProgressSpinnerModule
     ]
 })
 export class LoginModule { }

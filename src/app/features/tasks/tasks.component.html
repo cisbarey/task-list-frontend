@@ -1,14 +1,38 @@
 <div class="tasks-container">
-    <h1>Task List</h1>
-    <app-task-form (taskAdded)="addTask($event)"></app-task-form>
-    <mat-list>
+
+    <div class="logout-container">
+        <button mat-raised-button color="accent" (click)="logout()" class="logout-button">
+            Cerrar Sesión
+        </button>
+    </div>
+
+    <h1>Lista de Tareas</h1>
+
+    <form class="task-form" (ngSubmit)="addTask()" #taskForm="ngForm">
+        <mat-form-field appearance="outline" class="task-input">
+            <mat-label>Nueva tarea...</mat-label>
+            <input matInput [(ngModel)]="newTask.title" name="title" placeholder="Nueva tarea..." required />
+            <mat-error *ngIf="taskForm.submitted && !newTask.title">El título es obligatorio</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid || isLoading">
+            <span *ngIf="!isLoading">Agregar</span>
+            <mat-spinner *ngIf="isLoading" diameter="20"></mat-spinner>
+        </button>
+    </form>
+
+    <div class="spinner-container" *ngIf="isLoading">
+        <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <mat-list class="task-list" *ngIf="!isLoading">
         <mat-list-item *ngFor="let task of tasks; trackBy: trackById">
-            <mat-checkbox [checked]="task.completed" (change)="toggleTask(task)"></mat-checkbox>
-            <span>{{ task.title }} - {{ task.description }} ({{ task.createdAt | date }})</span>
-            <button mat-icon-button (click)="deleteTask(task.id)">
+            <mat-checkbox [(ngModel)]="task.status" (change)="updateTask(task)" color="primary" [checked]="task.status"
+                [disabled]="isUpdating"></mat-checkbox>
+            <mat-spinner *ngIf="isUpdating" diameter="20" class="checkbox-spinner"></mat-spinner>
+            <span [ngClass]="{ 'completed': task.status }">{{ task.title }}</span>
+            <button mat-icon-button color="warn" (click)="deleteTask(task.id)" class="delete-button">
                 <mat-icon>delete</mat-icon>
             </button>
         </mat-list-item>
     </mat-list>
-    <button mat-raised-button color="warn" (click)="logout()">Logout</button>
 </div>
