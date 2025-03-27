@@ -13,8 +13,6 @@ export class AuthService {
     login(email: string): Observable<string> {
         return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { username: email }).pipe(
             map(response => {
-                console.log('response', response);
-                
                 localStorage.setItem('token', response.token);
                 return response.token;
             }),

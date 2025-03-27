@@ -55,8 +55,15 @@ export class LoginComponent {
                 this.isLoading = true;
                 this.authService.createUser(email).subscribe({
                     next: () => {
-                        this.isLoading = false;
-                        this.router.navigate(['/tasks']);
+                        this.authService.login(email).subscribe({
+                            next: () => {
+                                this.isLoading = false;
+                                this.router.navigate(['/tasks']);
+                            },
+                            error: () => {
+                                this.isLoading = false;
+                            }
+                        });
                     },
                     error: () => {
                         this.isLoading = false;
