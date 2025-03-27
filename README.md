@@ -1,27 +1,34 @@
-# TaskListFrontend
+# Task List Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.13.
+Este proyecto es la parte frontend de una aplicación de lista de tareas desarrollada como parte del **Challenge Técnico FullStack Developer**. Está construido con **Angular 17**, utiliza **Angular Material** para el diseño, y está desplegado en **Firebase Hosting**.
 
-## Development server
+## Descripción
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+La aplicación permite a los usuarios iniciar sesión con su correo, crear y gestionar tareas (agregar, marcar como completadas, eliminar), y cerrar sesión. El frontend se comunica con un backend en Google Cloud Functions para manejar las operaciones de usuarios y tareas.
 
-## Code scaffolding
+- **URL Desplegada:** [https://clusterdb-eaaa6.web.app/login]
+- **Repositorio Backend:** [task-list-backend](https://github.com/cisbarey/task-list-backend)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Características
 
-## Build
+- **Autenticación:** Login con correo; si el usuario no existe, se ofrece crearlo.
+- **Gestión de Tareas:** Crear, listar, marcar como completadas, y eliminar tareas.
+- **Diseño Responsivo:** Adaptado para dispositivos móviles y de escritorio.
+- **Angular Material:** Uso de componentes como `mat-form-field`, `mat-button`, `mat-checkbox`, `mat-list`, `mat-spinner`.
+- **Spinners:** Indicadores de carga durante las llamadas al API (login, carga de tareas, agregar tarea, actualizar estado).
+- **Modularidad:** Uso de lazy loading para los módulos `LoginModule` y `TasksModule`.
+- **Optimización:** Ajuste de budgets en `angular.json` para cumplir con los requisitos de build.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Tecnologías
 
-## Running unit tests
+- Angular 17
+- Angular Material
+- SCSS
+- Firebase Hosting
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Instalación
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/cisbarey/task-list-frontend.git
+   cd task-list-frontend
